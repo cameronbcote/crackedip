@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crack Detection</title>
+    <style>
+        #camera-container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        #video-feed {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-time Crack Detection</h1>
+    <div id="camera-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video feed">
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+        const resultDiv = document.getElementById('result');
+
+        videoFeed.onload = function() {
+            resultDiv.textContent = "Camera feed active. Hold a phone up to the camera to detect cracks.";
+        }
+
+        videoFeed.onerror = function() {
+            resultDiv.textContent = "Error loading camera feed. Please ensure camera permissions are granted.";
+        }
+    </script>
+</body>
+</html>
